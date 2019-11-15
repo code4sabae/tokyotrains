@@ -18,7 +18,10 @@ const getTokyoTrainsNow = async function() {
   const res = []
   for (const train of trains) {
     const st = await getStation(train["odpt:operator"], train["odpt:fromStation"])
-    const pos = [ st["geo:lat"], st["geo:long"] ]
+//    console.log(st)
+    const delay = st['odpt:delay'] || 0
+//    const delay = Math.random() < .2 ? 1 : 0
+    const pos = [ st["geo:lat"], st["geo:long"], delay ]
     res.push(pos)
   }
   return res
